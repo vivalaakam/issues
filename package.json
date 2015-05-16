@@ -1,7 +1,9 @@
 {
   "name": "gh_page",
   "scripts": {
-    "start": "node ./server/bin/www"
+    "start": "node ./server/bin/www",
+    "postinstall": "npm run build",
+    "build": "bower install"
   },
   "dependencies": {
     "express": "~4.10.6",
