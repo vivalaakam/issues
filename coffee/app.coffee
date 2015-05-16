@@ -1,2 +1,2 @@
-define ['jquery',  'underscore',  'backbone'], ($, _, Backbone) ->
+define (require, exports, module) ->
   app = {};

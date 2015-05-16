@@ -9,7 +9,6 @@ define (require, exports, module) ->
         current = + current
 
         if current > 1 then page_list.push type : 'ruler' , value : current - 1 , name : 'prev'
-        console.log pages , current
         if pages < 13
            page_list.push type: 'link', active : current is num , value : num for num in [1..pages]
         else

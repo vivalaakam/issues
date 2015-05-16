@@ -14,5 +14,4 @@ define (require, exports, module) ->
       reg = new RegExp search , 'gi'
       repo = @filter (repo) ->
         reg.test repo.get 'name'
-      console.log repo
       repo

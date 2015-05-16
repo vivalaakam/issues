@@ -7,8 +7,6 @@ define (require, exports, module) ->
       "/issues/#{ @owner }/#{ @repo }/#{@page}"
     model : Issue
     initialize: () ->
-      @on 'all' , (e) ->
-        console.log e
     parse: (response) ->
       @pages = response.pages
       response.values

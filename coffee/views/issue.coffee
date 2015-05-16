@@ -10,6 +10,5 @@ define (require, exports, module) ->
       @model.on 'sync' , @render , @
       @model.fetch()
     render: ->
-      console.log 'render' ,@model.toJSON()
       @$el.html templates["templates/issue"] @model.toJSON()
       @

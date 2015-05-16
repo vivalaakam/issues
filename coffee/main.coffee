@@ -2,6 +2,10 @@ require.config {
   paths :
     templates: '../../../templates'
 }
-require ['app', 'router'], (app, Router) ->
-   app.router = new Router();
-   Backbone.history.start();
+
+
+define (require, exports, module) ->
+  app = require 'app'
+  Router = require 'router'
+  app.router = new Router() ;
+  Backbone.history.start() ;

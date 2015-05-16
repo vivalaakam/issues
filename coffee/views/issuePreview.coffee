@@ -6,7 +6,6 @@ define (require, exports, module) ->
     className : 'issue'
     initialize: (opts = {})->
       @data = opts extends @data
-      console.log @data , opts
     render: ->
       model = @data extends @model.toJSON();
       @$el.html templates["templates/issuePreview"] model
