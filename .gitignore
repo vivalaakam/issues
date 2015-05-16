@@ -1,0 +1,6 @@
+src
+.DS_Store
+node_modules
+bower_components
+public/javascripts/main.js
+public/stylesheets/style.css

@@ -1,0 +1,8 @@
+.photo
+ img(src=user.avatar_url)
+.body
+  h3.title= title
+  .info
+    a(href="#/#{owner}/#{repo}/issue/#{number}")##{number}
+    span opened #{date_pretty} by
+      a(href="https://github.com/#{user.login}")= user.login

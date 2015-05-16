@@ -1,0 +1,11 @@
+each page in pages
+  case page.type
+    when 'ruler'
+      a(href="#/#{link}/#{page.value}")= page.name
+    when 'link'
+      if current == page.value
+        a.active(href="#/#{link}/#{page.value}")= page.value
+      else
+        a(href="#/#{link}/#{page.value}")= page.value
+    default
+      span ...

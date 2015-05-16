@@ -1,0 +1,13 @@
+h1 #{title}
+  span.number ##{number}
+.labels
+  ul
+    each label in labels
+      li(style="background-color:##{label.color}")= label.name
+.info
+  .photo
+    img(src=user.avatar_url)
+  .cont
+    .head= user.login
+      span.date #{date_pretty}
+    .body= body
