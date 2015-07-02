@@ -15,3 +15,25 @@
         }
     }
 }
+.pagination {
+    .pagination__wrapper {
+        button,
+        span {
+            display: inline-block;
+            color: #333;
+            padding: 4px 12px;
+            border: 1px solid #e6e6e6;
+            text-decoration: none;
+            background-color: #fff;
+        }
+        span,
+        button.active {
+            background-color: #e6e6e6;
+        }
+        button {
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+}
