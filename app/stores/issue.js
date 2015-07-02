@@ -3,6 +3,8 @@ var assign = require('object-assign');
 var ActionTypes = require('../constants/constants').ActionTypes;
 var AppDispatcher = require('../dispatcher/dispatcher');
 var CHANGE_EVENT = 'change';
+var utils = require('../utils/helpers');
+
 var issues = [],
     last_page = 0;
 

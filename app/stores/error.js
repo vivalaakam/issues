@@ -4,7 +4,6 @@ var ActionTypes = require('../constants/constants').ActionTypes;
 var AppDispatcher = require('../dispatcher/dispatcher');
 var CHANGE_EVENT = 'change';
 var errors = [];
-var utils = require('../utils/helpers');
 
 function _addError(data) {
     errors.push(data);

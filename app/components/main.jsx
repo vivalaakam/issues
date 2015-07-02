@@ -32,13 +32,13 @@ var Component = React.createClass({
         actions.loadIssues(this.state.owner, this.state.repo, this.state.page);
     },
     _onError: function() {
-      console.log('_onError');
         this.setState({
             errors: ErrorStore.getErrors(),
             inProgress: false
         });
     },
     _onChange: function() {
+      console.log('onChange')
         this.setState({
             issues: IssuesStore.getIssues(),
             pages: IssuesStore.getLastPage(),
