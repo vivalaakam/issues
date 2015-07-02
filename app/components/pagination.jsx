@@ -20,7 +20,6 @@ var Pagination = React.createClass({
             pages = +this.props.pages,
             className,
             i;
-            console.log(current , pages);
         if (pages > 1) {
             if (current > 1) {
                 page_list.push(<button className="ruler" onClick={this.prevPage}>Prev</button>);

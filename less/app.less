@@ -37,3 +37,37 @@
         }
     }
 }
+.search {
+    .search__field {
+        display: inline-block;
+        margin-right: 3px;
+    }
+    .search__autocomplete {
+        position: relative;
+        .search__autocomplete-ul {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            margin-top: -4px;
+            background-color: #fff;
+            border: 1px solid #e6e6e6;
+            box-sizing: border-box;
+            border-top: none;
+            border-radius: 3px;
+            &:empty {
+              display: none;
+            }
+            .search__autocomplete-li {
+                list-style-type: none;
+                padding: 3px 6px;
+                color: #333;
+                text-transform: lowercase;
+                .search__autocomplete-a {
+                    display: block;
+                    color: #333;
+                }
+            }
+        }
+    }
+}

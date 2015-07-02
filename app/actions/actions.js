@@ -17,7 +17,19 @@ module.exports = {
             AppDispatcher.dispatch({
                 type: ActionTypes.ADD_ERROR,
                 error: error
-
+            });
+        });
+    },
+    loadRepos: function(owner) {
+        ApiUtils.loadRepos(owner).then(function(response) {
+            AppDispatcher.dispatch({
+                type: ActionTypes.LOAD_REPOS,
+                data: response
+            });
+        }, function(error) {
+            AppDispatcher.dispatch({
+                type: ActionTypes.ADD_ERROR,
+                error: error
             });
         });
     }

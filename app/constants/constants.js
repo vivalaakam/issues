@@ -5,6 +5,7 @@ module.exports = {
         ADD_ERROR: null,
         SET_ERRORS: null,
         RESET_ERRORS: null,
-        REMOVE_ERROR: null
+        REMOVE_ERROR: null,
+        LOAD_REPOS: null
     })
 };

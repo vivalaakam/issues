@@ -28,11 +28,28 @@ module.exports = {
                         } else {
 
                             reject({
-                              name : 'Repository not found'
+                                name: 'Repository not found'
                             });
                         }
                     }
                 });
         });
     },
+    loadRepos: function(owner) {
+        return new Promise(function(resolve, reject) {
+            request.get('https://api.github.com/users/' + owner + '/repos').send({})
+                .end(function(error, res) {
+                    if (res) {
+                        var data = JSON.parse(res.text);
+                        if (res.status === 200) {
+                            resolve(data);
+                        } else {
+                            reject({
+                                name: 'User not found'
+                            });
+                        }
+                    }
+                });
+        });
+    }
 };

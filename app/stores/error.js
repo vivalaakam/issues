@@ -43,7 +43,6 @@ ErrorStore.dispatchToken = AppDispatcher.register(function(action) {
 
     switch (action.type) {
         case ActionTypes.ADD_ERROR:
-        console.log(action);
             _addError(action.error);
             ErrorStore.emitChange();
             break;

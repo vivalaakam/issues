@@ -5,6 +5,8 @@ var actions = require('../actions/actions');
 var Issue = require('./issuePreview.jsx');
 var Pagination = require('./pagination.jsx');
 var Router = require('react-router');
+var Search = require('./search.jsx');
+
 var Component = React.createClass({
     mixin: [Router.Navigation],
     getInitialState: function() {
@@ -38,17 +40,13 @@ var Component = React.createClass({
         });
     },
     _onChange: function() {
-      console.log('onChange')
         this.setState({
             issues: IssuesStore.getIssues(),
             pages: IssuesStore.getLastPage(),
             inProgress: false
         });
     },
-    _onSubmit: function(e) {
-        e.preventDefault();
-        var owner = this.refs.owner.getDOMNode().value,
-            repo = this.refs.repo.getDOMNode().value;
+    _onSubmit: function(repo, owner) {
         this.setState({
             owner: owner,
             repo: repo,
@@ -66,11 +64,7 @@ var Component = React.createClass({
         return (
             <div>
                 <div className="header">
-                    <form onSubmit={this._onSubmit}>
-                        <input defaultValue={this.state.owner} ref="owner" type="text"/>
-                        <input defaultValue={this.state.repo} ref="repo" type="text"/>
-                        <button>Load</button>
-                    </form>
+                    <Search _onChange={this._onSubmit}/>
                 </div>
                 <div className="errors">
                     <ul>{errors}</ul>
