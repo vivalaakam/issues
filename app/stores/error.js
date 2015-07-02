@@ -7,11 +7,6 @@ var errors = [];
 var utils = require('../utils/helpers');
 
 function _addError(data) {
-    errors = data.map(function(issue) {
-        issue.pretty_date = utils.pretty_date(issue.date);
-        return issue;
-    });
-
     errors.push(data);
 }
 
@@ -49,11 +44,11 @@ ErrorStore.dispatchToken = AppDispatcher.register(function(action) {
 
     switch (action.type) {
         case ActionTypes.ADD_ERROR:
+        console.log(action);
             _addError(action.error);
             ErrorStore.emitChange();
             break;
         case ActionTypes.SET_ERRORS:
-            console.log(action.errors);
             _setErrors(action.errors);
             ErrorStore.emitChange();
             break;

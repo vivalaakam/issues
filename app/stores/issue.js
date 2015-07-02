@@ -7,7 +7,10 @@ var issues = [],
     last_page = 0;
 
 function _loadIssues(data) {
-    issues = data;
+    issues = data.map(function(issue) {
+        issue.pretty_date = utils.pretty_date(issue.date);
+        return issue;
+    });
 }
 
 function _lastPage(page) {

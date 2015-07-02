@@ -10,9 +10,11 @@ module.exports = {
                 data: response.issues,
                 pages : response.pages
             });
-        }, function() {
+        }, function(error) {
             AppDispatcher.dispatch({
-                type: ActionTypes.ERROR,
+                type: ActionTypes.ADD_ERROR,
+                error: error
+
             });
         });
     }

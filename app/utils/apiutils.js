@@ -26,7 +26,10 @@ module.exports = {
 
                             resolve(data);
                         } else {
-                            reject(data);
+
+                            reject({
+                              name : 'Repository not found'
+                            });
                         }
                     }
                 });
