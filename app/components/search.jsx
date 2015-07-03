@@ -1,31 +1,43 @@
 var React = require('react');
 var actions = require('../actions/actions');
 var RepoStores = require('../stores/repo');
+var Link = require('react-router').Link;
 
 var Search = React.createClass({
     getInitialState: function() {
         return {
-            owner: '',
-            repo: '',
+            owner: this.props.owner,
+            repo: this.props.repo,
             repos: [],
             list: []
         };
     },
     componentDidMount: function() {
-        RepoStores.addChangeListener(this._loadRepos);
+        RepoStores.addChangeListener(this.changeRepos);
+        if (this.state.owner) {
+            this.load();
+        }
     },
-    _loadRepos: function() {
+    componentWillReceiveProps: function(props) {
+        this.setState(props, this.load);
+    },
+    load: function() {
+        if (this.state.owner !== "") {
+            actions.loadRepos(this.state.owner);
+        }
+    },
+    changeRepos: function() {
         this.setState({
             repos: RepoStores.getRepos()
         });
     },
-    loadRepos: function(e) {
+    searchRepos: function(e) {
         e.preventDefault();
         var owner = this.refs.owner.getDOMNode().value;
         this.setState({
-          owner: owner
-        });
-        actions.loadRepos(owner);
+            owner: owner
+        }, this.load);
+
     },
     searchRepo: function() {
         var repo = this.refs.repo.getDOMNode().value;
@@ -55,7 +67,7 @@ var Search = React.createClass({
         list = this.state.list.map(function(l) {
             return (
                 <li className="search__autocomplete-li">
-                    <a href="javascript:void(0)" className="search__autocomplete-a" onClick={this.setRepo.bind(this,l.name)}>{l.name}</a>
+                    <a className="search__autocomplete-a" href="javascript:void(0)" onClick={this.setRepo.bind(this,l.name)}>{l.name}</a>
                 </li>
             );
         }, this);
@@ -63,10 +75,10 @@ var Search = React.createClass({
             <div className="search">
                 <form onSubmit={this._onSubmit}>
                     <div className="search__field">
-                        <input defaultValue={this.state.owner} onChange={this.loadRepos} ref="owner" type="text"/>
+                        <input onChange={this.searchRepos} ref="owner" type="text" value={this.state.owner}/>
                     </div>
                     <div className="search__field search__autocomplete">
-                        <input defaultValue={this.state.repo} disabled={this.state.repos.length === 0} onKeyUp={this.searchRepo} ref="repo" type="text"/>
+                        <input disabled={this.state.repos.length === 0} onChange={this.searchRepo} onKeyUp={this.searchRepo} ref="repo" type="text" value={this.state.repo}/>
                         <ul className="search__autocomplete-ul">{list}</ul>
                     </div>
                     <div className="search__field">

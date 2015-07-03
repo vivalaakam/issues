@@ -4,18 +4,12 @@ var Route = Router.Route;
 
 var App = require('./components/app.jsx');
 var Main = require('./components/main.jsx');
-
+var Issue = require('./components/issue.jsx');
 var routes = (
     <Route handler={App} path="/">
-        <Route handler={Main} name="main" path="/">
-            <Route handler={Main} name="issues" path="/issues">
-                <Route handler={Main} name="issues-owner" path=":owner">
-                    <Route handler={Main} name="issues-owner-repo" path=":repo">
-                        <Route handler={Main} name="issues-owner-repo-page" path=":page"></Route>
-                    </Route>
-                </Route>
-            </Route>
-        </Route>
+        <Route handler={Main} name="main" path="/"></Route>
+        <Route handler={Main} name="issues" path=":owner/:repo/issues/:page"></Route>
+        <Route handler={Issue} name="issue" path=":owner/:repo/issue/:number"></Route>
     </Route>
 );
 module.exports = routes;

@@ -5,14 +5,21 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var CHANGE_EVENT = 'change';
 var utils = require('../utils/helpers');
 
-var issue = {};
+var issues = [],
+    last_page = 0;
 
-function _loadIssue(data) {
-    issue = data;
-    issue.pretty_date = utils.pretty_date(issue.date);
+function _loadIssues(data) {
+    issues = data.map(function(issue) {
+        issue.pretty_date = utils.pretty_date(issue.date);
+        return issue;
+    });
 }
 
-var IssueStore = assign({}, EventEmitter.prototype, {
+function _lastPage(page) {
+    last_page = page;
+}
+
+var IssuesStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function() {
         this.emit(CHANGE_EVENT);
@@ -23,17 +30,21 @@ var IssueStore = assign({}, EventEmitter.prototype, {
     removeChangeListener: function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
-    getIssue: function() {
-        return issue;
+    getIssues: function() {
+        return issues;
+    },
+    getLastPage: function() {
+        return last_page;
     }
 });
 
-IssueStore.dispatchToken = AppDispatcher.register(function(action) {
+IssuesStore.dispatchToken = AppDispatcher.register(function(action) {
 
     switch (action.type) {
-        case ActionTypes.LOAD_ISSUE:
-            _loadIssue(action.data);
-            IssueStore.emitChange();
+        case ActionTypes.LOAD_ISSUES:
+            _loadIssues(action.data);
+            _lastPage(action.pages);
+            IssuesStore.emitChange();
             break;
         default:
             // do nothing
@@ -41,4 +52,4 @@ IssueStore.dispatchToken = AppDispatcher.register(function(action) {
 
 });
 
-module.exports = IssueStore;
+module.exports = IssuesStore;
