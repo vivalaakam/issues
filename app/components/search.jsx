@@ -19,6 +19,7 @@ var Search = React.createClass({
         }
     },
     componentWillReceiveProps: function(props) {
+        console.log(props);
         this.setState(props, this.load);
     },
     load: function() {
@@ -39,7 +40,8 @@ var Search = React.createClass({
         }, this.load);
 
     },
-    searchRepo: function() {
+    searchRepo: function(e) {
+        e.preventDefault();
         var repo = this.refs.repo.getDOMNode().value;
         var reg = new RegExp(repo, "gi");
         var repos = this.state.repos.filter(function(r) {

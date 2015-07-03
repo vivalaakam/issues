@@ -43,10 +43,10 @@ module.exports = {
                 data: response
             });
         }, function(error) {
-            AppDispatcher.dispatch({
+            /*AppDispatcher.dispatch({
                 type: ActionTypes.ADD_ERROR,
                 error: error
-            });
+            });*/
         });
     }
 };

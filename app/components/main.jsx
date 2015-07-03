@@ -62,7 +62,7 @@ var Component = React.createClass({
         });
     },
     render: function() {
-
+        console.log(this.state);
         var issues = this.state.inProgress ? <div>Load in progress</div> : this.state.issues.map(function(issue) {
             return <Issue issue={issue} owner={this.state.owner} repo={this.state.repo}/>;
         }, this);
