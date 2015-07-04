@@ -48,7 +48,8 @@ var Search = React.createClass({
             return reg.test(r.name);
         });
         this.setState({
-            list: repos
+            list: repos,
+            repo: repo
         });
     },
     setRepo: function(name) {

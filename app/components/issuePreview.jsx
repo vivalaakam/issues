@@ -7,12 +7,12 @@ var IssuePreview = React.createClass({
         var login = 'https://github.com/' + this.props.issue.user.login;
         return (
             <div className="issuePreview">
-                <div className="photo">
-                    <img src={this.props.issue.user.avatar_url}/>
+                <div className="issuePreview__photo">
+                    <img className="issuePreview__photo-img" src={this.props.issue.user.avatar_url}/>
                 </div>
-                <div className="issue__body">
-                    <h3 className="issue__title">{this.props.issue.title}</h3>
-                    <div className="issue__info">
+                <div className="issuePreview__body">
+                    <h3 className="issuePreview__title">{this.props.issue.title}</h3>
+                    <div className="issuePreview__info">
                         <Link to={link}>#{this.props.issue.number}</Link>
                         <span>
                             opened #{this.props.issue.date_pretty} by

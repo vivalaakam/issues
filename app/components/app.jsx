@@ -5,7 +5,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var Template = React.createClass({
     render: function () {
         return (
-            <div className="content">
+            <div className="container">
                 <RouteHandler />
             </div>
         );

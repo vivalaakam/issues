@@ -72,13 +72,17 @@ var Component = React.createClass({
         return (
             <div>
                 <div className="header">
-                    <Search _onChange={this._onSubmit} owner={this.state.owner} repo={this.state.repo}/>
+                    <div className="content">
+                        <Search _onChange={this._onSubmit} owner={this.state.owner} repo={this.state.repo}/>
+                    </div>
                 </div>
-                <div className="errors">
-                    <ul>{errors}</ul>
+                <div className="content">
+                    <div className="errors">
+                        <ul>{errors}</ul>
+                    </div>
+                    <div className="issues">{issues}</div>
+                    <Pagination _onChangePage={this.changePage} current={this.state.page} pages={this.state.pages}/>
                 </div>
-                <div className="issues">{issues}</div>
-                <Pagination _onChangePage={this.changePage} current={this.state.page} pages={this.state.pages}/>
             </div>
         );
     }
