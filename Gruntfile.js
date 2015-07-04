@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+    var rewrite = require('connect-modrewrite');
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
@@ -16,7 +17,29 @@ module.exports = function(grunt) {
                 options: {
                     hostname: 'localhost',
                     port: 3000,
-                    base: './public'
+                    base: './public',
+                    middleware: function(connect, options) {
+
+                        var middleware = [];
+
+                        // 1. mod-rewrite behavior
+                        var rules = [
+                            '!\\.html|\\.js|\\.css|\\.svg|\\.jp(e?)g|\\.png|\\.gif$ /index.html'
+                        ];
+                        middleware.push(rewrite(rules));
+
+                        // 2. original middleware behavior
+                        var base = options.base;
+                        if (!Array.isArray(base)) {
+                            base = [base];
+                        }
+                        base.forEach(function(path) {
+                            middleware.push(connect.static(path));
+                        });
+
+                        return middleware;
+
+                    }
                 }
             }
         },
