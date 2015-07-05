@@ -16,8 +16,6 @@
         "grunt-contrib-connect": "latest",
         "grunt-webpack": "~1.0",
         "grunt-browserify": "2.1.4",
-        "grunt-contrib-copy": "~0.8",
-        "grunt-webfont": "~0.4.8",
         "grunt-react": "~0.12",
         "react-tools": "^0.13.3",
         "promise": "~7.0",

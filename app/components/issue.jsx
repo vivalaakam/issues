@@ -18,7 +18,6 @@ var Issue = React.createClass({
     componentDidMount: function() {
         IssueStore.addChangeListener(this._onChange);
         ErrorStore.addChangeListener(this._onError);
-        console.log(this);
         this.load();
     },
     componentWillReceiveProps: function(props) {

@@ -5,8 +5,10 @@ var actions = require('../actions/actions');
 var Issue = require('./issuePreview.jsx');
 var Pagination = require('./pagination.jsx');
 var Search = require('./search.jsx');
+var Navigation = require('react-router').Navigation;
 
 var Component = React.createClass({
+    mixins: [Navigation],
     getInitialState: function() {
         return {
             issues: [],
@@ -37,7 +39,7 @@ var Component = React.createClass({
         this.setState({
             page: page
         }, function() {
-            this.load();
+            this.replaceWith('issues', this.state);
         });
     },
     _onError: function() {
@@ -62,7 +64,6 @@ var Component = React.createClass({
         });
     },
     render: function() {
-        console.log(this.state);
         var issues = this.state.inProgress ? <div>Load in progress</div> : this.state.issues.map(function(issue) {
             return <Issue issue={issue} owner={this.state.owner} repo={this.state.repo}/>;
         }, this);

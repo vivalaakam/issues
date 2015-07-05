@@ -85,10 +85,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-webfont');
-    grunt.loadNpmTasks('grunt-jest');
 
 
     grunt.registerTask('default', ['browserify', 'less:development', 'connect', 'watch']);

@@ -19,8 +19,11 @@ var Search = React.createClass({
         }
     },
     componentWillReceiveProps: function(props) {
-        console.log(props);
-        this.setState(props, this.load);
+        if (this.state.owner !== props.owner) {
+            this.setState({
+                owner: props.owner
+            }, this.load);
+        }
     },
     load: function() {
         if (this.state.owner !== "") {
